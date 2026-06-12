@@ -23,6 +23,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.example.biblioteca.ui.theme.BibliotecaTheme
 import androidx.compose.foundation.layout.Column
+import com.example.biblioteca.ui_screens.SearchScreen
+import com.example.biblioteca.ui_screens.FavoritesScreen
+import com.example.biblioteca.ui_screens.SettingsScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,40 +108,6 @@ fun BibliotecaApp() {
         }
     }
 }
-/*
-@Composable
-fun SearchScreen() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text("Biblioteca")
-                }
-            )
-        }
-    ) { padding ->
-        Text(
-            text = "Buscar libros",
-            modifier = Modifier.padding(padding)
-        )
-    }
-}
-*/
-@Composable
-fun SearchScreen() {
-    Text("Buscar libros")
-}
-
-@Composable
-fun FavoritesScreen() {
-    Text("Favoritos")
-}
-@Composable
-fun SettingsScreen() {
-    Text("Ajustes")
-}
-
-
 enum class AppDestinations(
     val label: String,
     val icon: Int,
@@ -146,20 +115,4 @@ enum class AppDestinations(
     HOME("Inicio", R.drawable.ic_home),
     FAVORITES("Favoritos", R.drawable.ic_favorite),
     SETTINGS("Ajustes", R.drawable.ic_account_box),
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BibliotecaTheme {
-        Greeting("Android")
-    }
 }
