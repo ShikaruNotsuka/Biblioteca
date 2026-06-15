@@ -13,13 +13,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.example.biblioteca.data.VolumeInfo
+import com.example.biblioteca.data.BookItem
 import com.example.biblioteca.viewmodel.SearchViewModel
 
 @Composable
 fun SearchScreen(
     viewModel: SearchViewModel = viewModel(),
-    onBookClick: (VolumeInfo) -> Unit
+    onBookClick: (BookItem) -> Unit
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -86,7 +86,7 @@ fun SearchScreen(
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { onBookClick(book.volumeInfo) },
+                        .clickable { onBookClick(book) },
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
                     Row(

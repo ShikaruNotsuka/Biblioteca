@@ -5,9 +5,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,16 +18,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.example.biblioteca.data.VolumeInfo
+import com.example.biblioteca.data.BookItem
+import com.example.biblioteca.viewmodel.BookViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    volumeInfo: VolumeInfo,
-    onBackClick: () -> Unit,
-    onFavoriteClick: () -> Unit
+    bookItem: BookItem,
+    bookViewModel: BookViewModel,
+    onBackClick: () -> Unit
 ) {
+    val isFavorite by bookViewModel.isFavorite(bookItem.id).collectAsStateWithLifecycle()
+    val volumeInfo = bookItem.volumeInfo
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -39,10 +46,17 @@ fun DetailScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = onFavoriteClick) {
+                    IconButton(onClick = {
+                        if (isFavorite) {
+                            bookViewModel.removeFavorite(bookItem)
+                        } else {
+                            bookViewModel.addFavorite(bookItem)
+                        }
+                    }) {
                         Icon(
-                            imageVector = Icons.Default.FavoriteBorder,
-                            contentDescription = "Favoritos"
+                            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = if (isFavorite) "Quitar de favoritos" else "Añadir a favoritos",
+                            tint = if (isFavorite) Color.Red else LocalContentColor.current
                         )
                     }
                 }
