@@ -1,4 +1,4 @@
-package com.example.biblioteca.ui_screens
+package com.example.biblioapp.ui_screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.example.biblioteca.data.BookItem
-import com.example.biblioteca.viewmodel.SearchViewModel
+import com.example.biblioapp.data.BookItem
+import com.example.biblioapp.viewmodel.SearchViewModel
 
 @Composable
 fun SearchScreen(
@@ -62,7 +62,6 @@ fun SearchScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Mostrar error si existe
         errorMessage?.let {
             Text(
                 text = it,
@@ -95,7 +94,6 @@ fun SearchScreen(
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // Imagen de Portada con Coil
                         val imageUrl = book.volumeInfo.imageLinks?.thumbnail?.replace("http://", "https://")
                         
                         AsyncImage(

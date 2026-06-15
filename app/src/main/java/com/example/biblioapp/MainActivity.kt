@@ -1,4 +1,4 @@
-package com.example.biblioteca
+package com.example.biblioapp
 
 import android.content.IntentFilter
 import android.net.ConnectivityManager
@@ -14,18 +14,18 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import com.example.biblioteca.ui.theme.BibliotecaTheme
-import com.example.biblioteca.ui_screens.SearchScreen
-import com.example.biblioteca.ui_screens.FavoritesScreen
-import com.example.biblioteca.ui_screens.SettingsScreen
-import com.example.biblioteca.ui_screens.DetailScreen
-import com.example.biblioteca.components.NetworkChangeReceiver
-import com.example.biblioteca.data.VolumeInfo
-import com.example.biblioteca.data.AppDatabase
-import com.example.biblioteca.data.BookRepository
-import com.example.biblioteca.viewmodel.BookViewModel
+import com.example.biblioapp.ui.theme.BiblioAppTheme
+import com.example.biblioapp.ui_screens.SearchScreen
+import com.example.biblioapp.ui_screens.FavoritesScreen
+import com.example.biblioapp.ui_screens.SettingsScreen
+import com.example.biblioapp.ui_screens.DetailScreen
+import com.example.biblioapp.components.NetworkChangeReceiver
+import com.example.biblioapp.data.VolumeInfo
+import com.example.biblioapp.data.AppDatabase
+import com.example.biblioapp.data.BookRepository
+import com.example.biblioapp.viewmodel.BookViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.biblioteca.data.BookItem
+import com.example.biblioapp.data.BookItem
 
 class MainActivity : ComponentActivity() {
     private lateinit var database: AppDatabase
@@ -35,7 +35,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        // Inicialización de la base de datos y el repositorio
         database = AppDatabase.getDatabase(this)
         repository = BookRepository(database.bookDao())
 
@@ -43,9 +42,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             var isDarkMode by rememberSaveable { mutableStateOf(false) }
 
-            BibliotecaTheme(darkTheme = isDarkMode) {
-                // Pasamos el repositorio a la App para crear el ViewModel
-                BibliotecaApp(
+            BiblioAppTheme(darkTheme = isDarkMode) {
+                BiblioApp(
                     repository = repository,
                     isDarkMode = isDarkMode,
                     onDarkModeChange = { isDarkMode = it }
@@ -68,12 +66,11 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BibliotecaApp(
+fun BiblioApp(
     repository: BookRepository,
     isDarkMode: Boolean,
     onDarkModeChange: (Boolean) -> Unit
 ) {
-    // Inicializamos el ViewModel con una fábrica manual o usando un ViewModelProvider
     val bookViewModel: BookViewModel = viewModel(
         factory = object : androidx.lifecycle.ViewModelProvider.Factory {
             override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
@@ -85,7 +82,6 @@ fun BibliotecaApp(
     var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.HOME) }
     var selectedBook by remember { mutableStateOf<BookItem?>(null) }
 
-    // Si hay un libro seleccionado, mostramos la pantalla de detalle a pantalla completa
     if (selectedBook != null) {
         DetailScreen(
             bookItem = selectedBook!!,
@@ -93,7 +89,6 @@ fun BibliotecaApp(
             onBackClick = { selectedBook = null }
         )
     } else {
-        // Si no hay libro seleccionado, mostramos la estructura normal con navegación
         NavigationSuiteScaffold(
             navigationSuiteItems = {
                 AppDestinations.entries.forEach {
@@ -118,7 +113,7 @@ fun BibliotecaApp(
                         title = {
                             Text(
                                 when (currentDestination) {
-                                    AppDestinations.HOME -> "Biblioteca"
+                                    AppDestinations.HOME -> "BiblioApp"
                                     AppDestinations.FAVORITES -> "Favoritos"
                                     AppDestinations.SETTINGS -> "Ajustes"
                                 }

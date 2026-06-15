@@ -1,4 +1,4 @@
-package com.example.biblioteca.ui_screens
+package com.example.biblioapp.ui_screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.example.biblioteca.data.BookItem
-import com.example.biblioteca.viewmodel.BookViewModel
+import com.example.biblioapp.data.BookItem
+import com.example.biblioapp.viewmodel.BookViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -71,7 +71,6 @@ fun DetailScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Imagen de Portada con conversión forzada a HTTPS
             val imageUrl = volumeInfo.imageLinks?.thumbnail?.replace("http://", "https://")
             
             AsyncImage(
@@ -83,7 +82,6 @@ fun DetailScreen(
                 contentScale = ContentScale.Fit
             )
 
-            // Título
             Text(
                 text = volumeInfo.title,
                 fontSize = 22.sp,
@@ -95,7 +93,6 @@ fun DetailScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Autores
             val authorsText = volumeInfo.authors?.joinToString(", ") ?: "Autor desconocido"
             Text(
                 text = authorsText,
@@ -106,7 +103,6 @@ fun DetailScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Separador sutil
             HorizontalDivider(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 thickness = 1.dp,
@@ -115,7 +111,6 @@ fun DetailScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Sección Descripción
             Text(
                 text = "Descripción",
                 fontSize = 18.sp,

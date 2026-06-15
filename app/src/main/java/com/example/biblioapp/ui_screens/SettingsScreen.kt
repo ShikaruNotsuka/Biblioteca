@@ -1,4 +1,4 @@
-package com.example.biblioteca.ui_screens
+package com.example.biblioapp.ui_screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

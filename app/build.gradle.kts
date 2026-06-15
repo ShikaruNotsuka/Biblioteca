@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.biblioteca"
+    namespace = "com.example.biblioapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.biblioteca"
+        applicationId = "com.example.biblioapp"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

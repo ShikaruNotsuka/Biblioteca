@@ -1,4 +1,4 @@
-package com.example.biblioteca.ui_screens
+package com.example.biblioapp.ui_screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,11 +13,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.example.biblioteca.data.BookEntity
-import com.example.biblioteca.data.BookItem
-import com.example.biblioteca.data.ImageLinks
-import com.example.biblioteca.data.VolumeInfo
-import com.example.biblioteca.viewmodel.BookViewModel
+import com.example.biblioapp.data.BookEntity
+import com.example.biblioapp.data.BookItem
+import com.example.biblioapp.data.ImageLinks
+import com.example.biblioapp.data.VolumeInfo
+import com.example.biblioapp.viewmodel.BookViewModel
 
 @Composable
 fun FavoritesScreen(
@@ -84,7 +84,6 @@ fun FavoriteBookItem(entity: BookEntity, onClick: () -> Unit) {
     }
 }
 
-// Extensión para facilitar la navegación reutilizando DetailScreen
 private fun BookEntity.toBookItem(): BookItem {
     return BookItem(
         id = this.id,

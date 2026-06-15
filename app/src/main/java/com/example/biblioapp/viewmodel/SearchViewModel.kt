@@ -1,10 +1,10 @@
-package com.example.biblioteca.viewmodel
+package com.example.biblioapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import android.util.Log
-import com.example.biblioteca.data.BookItem
-import com.example.biblioteca.data.RetrofitInstance
+import com.example.biblioapp.data.BookItem
+import com.example.biblioapp.data.RetrofitInstance
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

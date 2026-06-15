@@ -1,17 +1,17 @@
-package com.example.biblioteca.components
+package com.example.biblioapp.components
 
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import com.example.biblioteca.data.AppDatabase
-import com.example.biblioteca.data.BookDao
+import com.example.biblioapp.data.AppDatabase
+import com.example.biblioapp.data.BookDao
 
 class BookContentProvider : ContentProvider() {
 
     companion object {
-        const val AUTHORITY = "com.example.biblioteca.provider"
+        const val AUTHORITY = "com.example.biblioapp.provider"
         private const val BOOKS = 1
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTHORITY, "favorite_books", BOOKS)

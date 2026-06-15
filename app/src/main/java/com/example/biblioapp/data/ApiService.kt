@@ -1,4 +1,4 @@
-package com.example.biblioteca.data
+package com.example.biblioapp.data
 
 import retrofit2.http.GET
 import retrofit2.http.Query

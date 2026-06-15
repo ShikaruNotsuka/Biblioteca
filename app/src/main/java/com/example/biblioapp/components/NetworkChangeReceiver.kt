@@ -1,4 +1,4 @@
-package com.example.biblioteca.components
+package com.example.biblioapp.components
 
 import android.content.BroadcastReceiver
 import android.content.Context

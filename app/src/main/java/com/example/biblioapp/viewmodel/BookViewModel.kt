@@ -1,10 +1,10 @@
-package com.example.biblioteca.viewmodel
+package com.example.biblioapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.biblioteca.data.BookEntity
-import com.example.biblioteca.data.BookItem
-import com.example.biblioteca.data.BookRepository
+import com.example.biblioapp.data.BookEntity
+import com.example.biblioapp.data.BookItem
+import com.example.biblioapp.data.BookRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map

@@ -1,4 +1,4 @@
-package com.example.biblioteca.ui.theme
+package com.example.biblioapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
