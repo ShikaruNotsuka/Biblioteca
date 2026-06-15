@@ -1,5 +1,6 @@
 package com.example.biblioteca.ui_screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,10 +13,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.example.biblioteca.data.VolumeInfo
 import com.example.biblioteca.viewmodel.SearchViewModel
 
 @Composable
-fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
+fun SearchScreen(
+    viewModel: SearchViewModel = viewModel(),
+    onBookClick: (VolumeInfo) -> Unit
+) {
 
     var query by remember { mutableStateOf("") }
     val books by viewModel.books.collectAsStateWithLifecycle()
@@ -79,7 +84,9 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
         ) {
             items(books) { book ->
                 Card(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onBookClick(book.volumeInfo) },
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
                     Row(
