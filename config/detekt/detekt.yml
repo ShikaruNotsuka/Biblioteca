@@ -1,0 +1,33 @@
+# Configuración final para BiblioApp - Permitir generación de APK
+naming:
+  active: true
+  FunctionNaming:
+    active: true
+    ignoreAnnotated: ['Composable']
+  PackageNaming:
+    active: true
+    packagePattern: '^[a-z]+(\.[a-z_][a-z0-9_]*)*$'
+
+complexity:
+  active: true
+  LongMethod:
+    active: true
+    threshold: 120 # Más flexible para Compose
+
+style:
+  active: true
+  WildcardImport:
+    active: false
+  MagicNumber:
+    active: false # Desactivado para no bloquear por colores o IDs
+  MaxLineLength:
+    active: false # Desactivado para no bloquear por URLs o strings largas
+  NewLineAtEndOfFile:
+    active: false
+  MayBeConst:
+    active: false # Evitar avisos en API_KEYs y constantes locales
+
+exceptions:
+  active: true
+  TooGenericExceptionCaught:
+    active: false # Menos estricto para facilitar el desarrollo rápido

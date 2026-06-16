@@ -15,13 +15,21 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## Android
 
+### android sast
+
+```sh
+[bundle exec] fastlane android sast
+```
+
+Análisis de código estático (SAST) con Detekt
+
 ### android build
 
 ```sh
 [bundle exec] fastlane android build
 ```
 
-Genera el APK debug
+Genera el APK de debug listo para instalar
 
 ----
 
