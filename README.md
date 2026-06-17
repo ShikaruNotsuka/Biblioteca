@@ -43,6 +43,7 @@ Para facilitar la revisión técnica, se detallan los componentes clave:
 *   **ViewModels:** `BookViewModel`, `SearchViewModel`.
 *   **Repositorio:** `BookRepository`.
 *   **Servicios de Red:** `ApiService`, `RetrofitInstance`.
+*   **Datos y Filtros:** `BookItem`, `SearchFilter`.
 *   **Persistencia:** `AppDatabase`, `BookDao`, `BookEntity`.
 
 ---
@@ -68,11 +69,7 @@ El análisis estático asegura el cumplimiento de las mejores prácticas de prog
 | **Complejidad** | 75 |
 
 #### Generar Reporte Detallado
-Para regenerar el informe interactivo en HTML:
-```powershell
-gradlew.bat :app:detekt
-```
-*Informe en: `app/build/reports/detekt/detekt.html`*
+*El informe se encuentra en: `docs/security/detekt-report.html`*
 
 ---
 
