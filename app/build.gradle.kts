@@ -65,7 +65,7 @@ detekt {
     toolVersion = libs.versions.detekt.get()
     ignoreFailures = false
     buildUponDefaultConfig = true
-    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    config.setFrom(files("$rootDir/.detekt.yml"))
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
