@@ -1,7 +1,6 @@
-[README BIBLIOAPP.txt](https://github.com/user-attachments/files/29022932/README.BIBLIOAPP.txt)
-# BiblioApp - Sistema de Gestión Bibliotecaria
+# BiblioApp - Buscador de libros
 
-BiblioApp es una aplicación móvil desarrollada para la plataforma Android, enfocada en la eficiencia de procesos de búsqueda, organización y gestión de catálogos de libros. Este proyecto ha sido diseñado bajo estándares de arquitectura limpia y procesos de automatización industrial.
+BiblioApp es una aplicación móvil desarrollada para la plataforma Android, enfocada en la búsqueda y gestión de libros. Este proyecto ha sido diseñado bajo estándares de arquitectura limpia y procesos de automatización.
 
 ---
 
@@ -12,14 +11,14 @@ BiblioApp es una aplicación móvil desarrollada para la plataforma Android, enf
 ---
 
 ## Funcionalidades Principales
-- **Gestión de Catálogo:** Búsqueda avanzada de libros consumiendo servicios externos en tiempo real.
-- **Persistencia Local:** Almacenamiento de libros favoritos y gestión de base de datos interna mediante Room.
-- **Detalle Expandido:** Visualización completa de información bibliográfica, autores y reseñas.
-- **Interfaz Adaptativa:** Experiencia de usuario optimizada con componentes modernos de UI.
+- **Búsqueda de Libros:** Consulta avanzada de volúmenes mediante la **Google Books API**, obteniendo resultados en tiempo real.
+- **Persistencia Local:** Almacenamiento de libros favoritos y gestión de la base de datos interna mediante Room.
+- **Detalle de Libros:** Visualización completa de información bibliográfica, autores y reseñas.
+- **Interfaz Adaptativa:** Experiencia de usuario optimizada con componentes modernos de UI, incluyendo la opción de cambiar entre modo claro y modo oscuro desde los ajustes.
 
 ---
 
-## Arquitectura del Sistema
+## Arquitectura
 El proyecto implementa el patrón de arquitectura **MVVM (Model-View-ViewModel)**, garantizando una separación clara de responsabilidades y facilitando la escalabilidad:
 
 1.  **UI Layer (Compose):** Vistas declarativas que reaccionan al estado del ViewModel.
@@ -32,46 +31,60 @@ El proyecto implementa el patrón de arquitectura **MVVM (Model-View-ViewModel)*
 | **UI Framework** | Jetpack Compose |
 | **Networking** | Retrofit 2 + OkHttp |
 | **Persistencia** | Room Database |
+| **Componentes Android** | Broadcast Receiver & Content Provider |
 | **Inyección/Gestión** | StateFlow & ViewModel |
 
 ---
 
-## Pipeline de Calidad y Seguridad (SAST)
-Este proyecto integra un pipeline de **Integración Continua (CI)** profesional gestionado por **Fastlane**. El pilar fundamental de nuestra construcción es el **"Build Blindado"**.
+## Clases Principales
+Para facilitar la revisión técnica, se detallan los componentes clave:
 
-### Análisis Estático con Detekt
-Implementamos **Detekt** como herramienta de SAST para asegurar que cada línea de código cumpla con los estándares de calidad definidos:
-- **Validación Automática:** Se analizan métricas de complejidad, estilo y posibles fallos lógicos.
-- **Bloqueo de Compilación:** Si Detekt encuentra problemas, el pipeline aborta la generación del binario. No se genera ningún APK si existen errores de código o deuda técnica detectada.
-
-Para ejecutar el pipeline completo de validación y generación, utilizamos:
-```powershell
-bundle exec fastlane android build
-```
+*   **Vistas:** `SearchScreen`, `FavoritesScreen`, `DetailScreen`, `SettingsScreen`.
+*   **ViewModels:** `BookViewModel`, `SearchViewModel`.
+*   **Repositorio:** `BookRepository`.
+*   **Servicios de Red:** `ApiService`, `RetrofitInstance`.
+*   **Persistencia:** `AppDatabase`, `BookDao`, `BookEntity`.
 
 ---
 
-## Instrucciones de Compilación
+## Compilar y Ejecutar (Build Completo)
+Utilizamos **Fastlane** para automatizar un pipeline que integra calidad, seguridad y construcción en un solo paso. Para ejecutar el proceso completo, incluyendo el análisis estático (SAST), usá:
 
-### Requisitos Técnicos
-- Android Studio Ladybug o superior.
-- JDK 17.
-- Ruby 3.x + Bundler.
+```powershell
+bundle exec fastlane android build
+```
+*Este comando compila el proyecto, valida las reglas de estilo/seguridad con Detekt y genera el APK.*
 
-### Comandos de Consola
-| Objetivo | Comando |
+---
+
+## Seguridad y Calidad (SAST)
+El análisis estático asegura el cumplimiento de las mejores prácticas de programación. A continuación, el estado del último reporte:
+
+| Métrica | Resultado |
 | :--- | :--- |
-| **Instalar dependencias Ruby** | `bundle install` |
-| **Limpiar Proyecto** | `./gradlew clean` |
-| **Ejecutar SAST (Detekt)** | `bundle exec fastlane android sast` |
-| **Generar APK (Debug)** | `bundle exec fastlane android build` |
+| **Archivos Analizados** | 19 |
+| **Líneas de Código** | 1,069 |
+| **Problemas Detectados** | **0** |
+| **Complejidad** | 75 |
 
-> El APK resultante se encontrará en: `app/build/outputs/apk/debug/app-debug.apk`
+#### Generar Reporte Detallado
+Para regenerar el informe interactivo en HTML:
+```powershell
+gradlew.bat :app:detekt
+```
+*Informe en: `app/build/reports/detekt/detekt.html`*
+
+---
+
+## Manual de Usuario
+1.  **Inicio:** Escribí el título o autor del libro y tocá Buscar para obtener resultados en tiempo real.
+2.  **Exploración:** Seleccioná un libro de la lista para ver su descripción detallada.
+3.  **Favoritos:** Tocá el icono del corazón para guardar un libro. En la sección de **Favoritos**, podés consultar tu lista guardada y eliminar libros tocando el corazón rojo.
+4.  **Ajustes:** Cambiá el tema de la aplicación (claro/oscuro) desde la configuración.
 
 ---
 
 ## API Reference
-La aplicación consume datos de la API: **Google Books API**, 
+La aplicación consume datos de la API: **Google Books API**.
 
 ---
-
