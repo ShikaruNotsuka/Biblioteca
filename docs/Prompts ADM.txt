@@ -1,0 +1,36 @@
+﻿* # Clasificación de Prompts Utilizados Durante el Desarrollo
+* ## 1. Arquitectura y Estructura del Proyecto
+* * Acabo de crear una activity con el preset Navigation UI Activity para hacer una biblioteca que consuma una API pública, ¿cuál sería el siguiente paso?
+* * La estructura se ve bastante confusa en un solo archivo kt, ¿cómo debería organizar el proyecto para que sea más legible?
+* * Estoy empezando a hacer una aplicación de un buscador de libros y necesito armar la estructura de carpetas en Android Studio para no tener todo en el MainActivity. ¿Cómo me recomiendas organizarlo para que el proyecto quede ordenado y no tenga problemas después?
+* * Ahora quiero pasar de la lista de libros a una pantalla con más detalle al tocar un elemento. ¿Cómo hago para configurar la navegación y asegurar que la segunda pantalla reciba los datos del libro que elegí?
+* * En caso de que quisiera que al pulsar el libro se abra una vista del libro con su descripción, ¿debería crear otra Screen.kt? ¿Dónde la guardo dentro de la estructura?
+* * Tengo que cumplir con la consigna de componentes nativos. Voy a armar un BroadcastReceiver para avisar si se corta el Wi-Fi y además configurar un ContentProvider para los libros. Necesito ver cómo integrar ambos componentes y hacerlos compatibles con Room.
+* * ## 2. Consumo de API y Obtención de Datos
+* * ¿Qué API recomiendas para una app de búsqueda de libros? Se nos dio de ejemplo OpenLibrary, pero unos compañeros usaron Google Books.
+* * Tengo que agregar las librerías para que el proyecto funcione. Voy a meter Retrofit, Navigation y lo necesario de Material 3 en el build.gradle.kts.
+* * Ya tengo la estructura base y quiero conectar con la API de Google Books. Estoy viendo cómo armar las clases para mapear el JSON de la API.
+* * Estoy intentando consumir una API con Retrofit pero me aparece el error “Unable to create converter”. ¿Qué puede estar faltando?
+* * Estoy con Retrofit pero me está costando configurar el conversor de JSON. ¿Qué le falta al Retrofit.Builder para que pueda leer los datos de la API correctamente?
+* * Ahora aparecen los libros pero solo me muestra el título sin el autor ni la portada.
+* * Logré traer los datos y los quiero mostrar en una lista después de realizar una búsqueda. Necesito que las portadas se carguen de internet de forma eficiente.
+* * La app se cierra si la API no responde y eso queda feo. ¿Cómo implemento un manejo de errores básico para que, si falla la conexión, le muestre un mensaje al usuario en vez de que la app se cuelgue?
+* * ## 3. Interfaz de Usuario (UI/UX)
+* * Necesito ayuda para implementar un modo oscuro en las vistas, que interactúe con un switch en la vista de Settings.
+* * Quiero poner un modo oscuro en la app con un Switch en Settings. Estoy viendo qué es lo más fácil para que el tema cambie y el estado se guarde para que no se pierda al cerrar la app.
+* * Quiero que las portadas se carguen de internet de forma eficiente para que la interfaz se sienta fluida cuando aparecen los resultados.
+* * En la pantalla de detalle, quiero que el botón de favoritos cambie según si ya guardé el libro. Estoy buscando la forma de que el botón consulte la base de datos y se refresque automáticamente.
+* * ## 4. Persistencia de Datos (Room)
+* * Ya tengo la ventana del libro y le puse un botón para agregar a favoritos. ¿Cómo configuro Room?
+* * Me sale el siguiente error al tratar de compilar: “AppDatabase_Impl does not exist”.
+* * Estoy armando la base de datos, el DAO y la entidad, pero me está saltando el error de que falta el archivo AppDatabase_Impl. ¿Cómo puedo arreglar la configuración de KSP?
+* * La query de obtener favoritos no me está devolviendo nada: `@Query("SELECT * FROM favorite_books") fun getAllFavoriteBooks(): List<BookEntity>`.
+* * Estoy buscando la forma de que el botón consulte la base de datos de Room y se refresque solo.
+* * Necesito integrar el ContentProvider con la base de datos local utilizada para almacenar libros favoritos.
+* * ## 5. DevOps, Calidad y Automatización
+* * La app ya es funcional, así que voy a usar Fastlane para automatizar la generación del APK. Estoy intentando arrancar con esto y necesito saber qué instalar en la PC para que Fastlane funcione.
+* * Ya instalé Fastlane y estoy configurando el Fastfile. Voy a armar un lane llamado `sast` para ejecutar el Detekt que configuré en el proyecto.
+* * Para el lane `build`, la idea es automatizar el proceso completo: que primero haga el clean, después corra el análisis de calidad y termine generando el APK de debug en un solo paso.
+* * Necesito configurar el Fastfile para que los reportes de seguridad del Detekt se exporten automáticamente a la carpeta `docs/security/` cada vez que ejecute el análisis.
+* * Configuración y uso de Detekt para análisis estático de código.
+* * Configuración de KSP para la generación automática de clases requeridas por Room.
